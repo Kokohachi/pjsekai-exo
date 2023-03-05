@@ -12,10 +12,9 @@ class PSExo
     CPuts.info "譜面の情報を取得します。"
     CPuts.ask "譜面ID（譜面の左上の#から始まるID）を入力して下さい。"
     @chart_id = prompt.ask("譜面ID:") do |q|
-      q = q.sub("/#chcy-/","")
       q.validate(/[A-Za-z0-9]{23}/, "譜面IDのフォーマットに沿っていません。")
     end
-    @chart_id = @chart_id.sub("/#chcy-/","")
+    
     get = http_get("https://cc.sevenc7c.com/sonolus/levels/#chcy-{@chart_id}")
     if get.code != 200
       CPuts.error "譜面が見つかりませんでした。"
