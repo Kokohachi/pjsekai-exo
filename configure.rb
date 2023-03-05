@@ -60,7 +60,7 @@ class PSExo
   def download_background
     print "\e[90m背景画像をダウンロードしています...\e[m"
     data = JSON.parse(
-      http_get("https://cc.sevenc7c.com/sonolus/levels/#chcy-{@chart_id}").body,
+      http_get("https://cc.sevenc7c.com/sonolus/levels/chcy-{@chart_id}").body,
       symbolize_names: true,
     )
     File.write(
@@ -75,7 +75,7 @@ class PSExo
   def download_jacket
     print "\e[90mジャケットをダウンロードしています...\e[m"
     data = JSON.parse(
-      http_get("https://cc.sevenc7c.com/sonolus/levels/#chcy-{@chart_id}").body,
+      http_get("https://cc.sevenc7c.com/sonolus/levels/chcy-{@chart_id}").body,
       symbolize_names: true,
     )
     File.write(

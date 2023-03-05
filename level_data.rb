@@ -14,8 +14,8 @@ class PSExo
     @chart_id = prompt.ask("譜面ID:") do |q|
       q.validate(/[A-Za-z0-9]{23}/, "譜面IDのフォーマットに沿っていません。")
     end
-    
-    get = http_get("https://cc.sevenc7c.com/sonolus/levels/#chcy-{@chart_id}")
+
+    get = http_get("https://cc.sevenc7c.com/sonolus/levels/chcy-{@chart_id}")
     if get.code != 200
       CPuts.error "譜面が見つかりませんでした。"
       exit 1
