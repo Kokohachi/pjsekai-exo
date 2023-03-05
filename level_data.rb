@@ -15,7 +15,7 @@ class PSExo
       q.validate(/[A-Za-z0-9]{23}/, "譜面IDのフォーマットに沿っていません。")
     end
 
-    get = http_get("https://cc.sevenc7c.com/sonolus/levels/chcy-{@chart_id}")
+    get = http_get("https://cc.sevenc7c.com/sonolus/levels/chcy-#{@chart_id}")
     if get.code != 200
       CPuts.error "譜面が見つかりませんでした。"
       exit 1
@@ -24,7 +24,7 @@ class PSExo
     chart_data = JSON.parse(get.body.to_s, symbolize_names: true)
     CPuts.info "譜面名：\e[m#{chart_data[:item][:title]}"
     CPuts.info "譜面作者：\e[m#{chart_data[:item][:author]}"
-    data = http_get("https://cc.sevenc7c.com" + chart_data[:item][:data][:url])
+    data = http_get(chart_data[:item][:data][:url])
     stream = StringIO.new(data.body.to_s)
 
     Zlib::GzipReader.wrap(stream) do |gz|

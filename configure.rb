@@ -60,12 +60,12 @@ class PSExo
   def download_background
     print "\e[90m背景画像をダウンロードしています...\e[m"
     data = JSON.parse(
-      http_get("https://cc.sevenc7c.com/sonolus/levels/chcy-{@chart_id}").body,
+      http_get("https://cc.sevenc7c.com/sonolus/levels/chcy-#{@chart_id}").body,
       symbolize_names: true,
     )
     File.write(
       "./dist/#{@chart_id}/background.png",
-      http_get("https://cc.sevenc7c.com" + data[:item][:useBackground][:item][:image][:url]).body.to_s,
+      http_get(data[:item][:useBackground][:item][:image][:url]).body.to_s,
       mode: "wb",
     )
     puts "\e[92m 完了\e[m"
@@ -75,12 +75,12 @@ class PSExo
   def download_jacket
     print "\e[90mジャケットをダウンロードしています...\e[m"
     data = JSON.parse(
-      http_get("https://cc.sevenc7c.com/sonolus/levels/chcy-{@chart_id}").body,
+      http_get("https://cc.sevenc7c.com/sonolus/levels/chcy-#{@chart_id}").body,
       symbolize_names: true,
     )
     File.write(
       "./dist/#{@chart_id}/jacket.png",
-      http_get("https://cc.sevenc7c.com" + data[:item][:cover][:url]).body.to_s,
+      http_get(data[:item][:cover][:url]).body.to_s,
       mode: "wb",
     )
     puts "\e[92m 完了\e[m"
